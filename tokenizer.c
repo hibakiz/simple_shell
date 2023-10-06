@@ -13,11 +13,10 @@ char **toknizer(char *line)
     token = strtok(tmp, " \t\n");
     if (token == NULL)
     {
-        free(line), line = NULL; 
         free(tmp), tmp = NULL;
         return (NULL);
     }
-    while (tmp)
+    while (token)
     {
         cpt++;
         token = strtok(NULL, " \t\n");
@@ -32,7 +31,8 @@ if (!command)
 token = strtok(line, " \t\n");
 while (token)
 {
-   command[i] = token;
+
+     	command[i] = _strdup(token);
     token = strtok(NULL, " \t\n");    
     i++;
 }
