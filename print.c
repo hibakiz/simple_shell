@@ -1,11 +1,12 @@
 #include "shell.h"
-/**
- * print - our print function
- * @message : pointer char thaat contains the chars to be printed.
- * Return: no rturn
-**/
+#include <unistd.h>
 
-void print(const char *message)
-{
-	write(STDOUT_FILENO, message, strlen(message));
+/**
+ * Print - Our print function
+ *
+ * @message: The string to be printed.
+ * @Return: no return
+ */
+void print(const char *message){
+    write(STDOUT_FILENO, message, strlen(message));
 }

@@ -8,8 +8,11 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
-void print(const char *message);
 void prompt(void);
 
+char *_strdup(const char *str);
+void print(const char *message);
+char **toknizer(char *line);
+char *read_line(void);
 
 #endif

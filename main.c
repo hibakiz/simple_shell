@@ -1,19 +1,33 @@
 #include "shell.h"
 /**
- * main - main function
- *
- * Return: 0
-**/
+ * main - Entrypoint of sshell program
+ * @ac: Count the number of arrguments
+ * @av: Array of strings contatin arguments
+ * Return: 0 on success
+*/
 
-int main(void)
+int main(int ac, char **argv)
 {
-	char *buffer;
-	size_t n;
+    char *line = NULL;
+  char **command = NULL;
+    int i = 0;
+    int status = 0;
+    (void) ac;
+    (void) argv;
+    while (1)
+    {
+        line = read_line();
+       if (line == NULL)
+       {
+	 if (isatty(STDOUT_FILENO))
+       write(STDOUT_FILENO, "\n",1);
+	       return (status);
+       }
 
-	while (1)
-	{
-		print("$");
-		getline(&buffer, &n, stdin);
-	}
-	return (0);
+        command = toknizer(line);
+        if (!command)
+        continue;
+        for (i = 0; command[i]; i++)
+        printf("%s\n", command[i]);
+    }
 }
