@@ -11,11 +11,13 @@
 #include <sys/wait.h>
 
 void prompt(void);
+extern char **environ;
 
 char *_strdup(const char *str);
 void print(const char *message);
 char **toknizer(char *line);
 char *read_line(void);
-void command_handle (char **command);
+/*void command_handle (char **command);*/
+int command_handle(char **command, char **argv);
 
 #endif

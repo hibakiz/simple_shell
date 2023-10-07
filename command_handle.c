@@ -1,18 +1,31 @@
 #include "shell.h"
-void command_handle (char **command)
+int command_handle (char **command, char **argv)
 {
-	char *path = "/bin/", *cmd;
+/*	char *path = "/bin/", *cmd;*/
 	pid_t pid;
+	int status_cmd;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		cmd = malloc(strlen(path) + strlen(command[0]) + 1);
+/*		cmd = malloc(strlen(path) + strlen(command[0]) + 1);
 		strcpy(cmd, path);
 		strcat (cmd, command[0]);
-		execve(cmd, command, NULL);}
-	else if (pid > 0)
-		wait(NULL);
+	 (execve(cmd, command, NULL)
+	*/
+	if (execve(command[0], command, environ) == -1)	
+	 {
+perror(argv[0]);
+free(command);		
+exit(0);
+     
+	 }
+	}
 	else
-		return;
-}
+	{
+		waitpid(pid, &status_cmd, 0);
+free(command);
+	}
+return(WEXITSTATUS(status_cmd));
+	}
+	

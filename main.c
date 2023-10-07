@@ -10,10 +10,10 @@ int main(int ac, char **argv)
 {
     char *line = NULL;
   char **command = NULL;
-    int i = 0;
-    int status = 0;
+/*    int i = 0;*/
+    int status_cmd = 0;
     (void) ac;
-    (void) argv;
+    
     while (1)
     {
         line = read_line();
@@ -21,14 +21,17 @@ int main(int ac, char **argv)
        {
 	 if (isatty(STDOUT_FILENO))
 		write(STDOUT_FILENO, "\n",1);
-	       return (status);
+	       return (status_cmd);
        }
 
         command = toknizer(line);
-        command_handle(command);
+/*        command_handle(command);*/
         if (!command)
         continue;
-        for (i = 0; command[i]; i++)
-        printf("%s\n", command[i]);
+/*        for (i = 0; command[i]; i++)
+        printf("%s\n", command[i]); 
+	
+	*/
+	status_cmd = command_handle(command, argv);
     }
 }
