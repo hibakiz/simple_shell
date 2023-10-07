@@ -20,11 +20,12 @@ int main(int ac, char **argv)
        if (line == NULL)
        {
 	 if (isatty(STDOUT_FILENO))
-       write(STDOUT_FILENO, "\n",1);
+		write(STDOUT_FILENO, "\n",1);
 	       return (status);
        }
 
         command = toknizer(line);
+        command_handle(command);
         if (!command)
         continue;
         for (i = 0; command[i]; i++)
