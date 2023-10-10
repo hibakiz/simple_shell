@@ -10,14 +10,15 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+
+
 void prompt(void);
 extern char **environ;
-
-char *_strdup(const char *str);
-void print(const char *message);
+#define del " \t\n"
+char *_strdup(char *str);
+/*void print(char *message);*/
 char **toknizer(char *line);
 char *read_line(void);
-/*void command_handle (char **command);*/
 int command_handle(char **command, char **argv);
 
 #endif

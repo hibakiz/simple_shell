@@ -13,22 +13,40 @@
  */
 int command_handle(char **command, char **argv)
 {
-pid_t pid;
-int status_cmd;
-pid = fork();
-if (pid == 0)
-{
-if (execve(command[0], command, environ) == -1)
-{
-perror(argv[0]);
-free(command);
-exit(0);
-}
-}
-else
-{
-waitpid(pid, &status_cmd, 0);
-free(command);
-}
-return (WEXITSTATUS(status_cmd));
+	pid_t pid;
+	int status_cmd = 0, i;
+
+	if (access(command[0], X_OK) == -1)
+	{
+		for (i = 0; command[i] != NULL; i++)
+			free(command[i]), command[i] = NULL;
+		free(command), command = NULL;
+
+		perror(argv[0]);
+		status_cmd = 127;
+		return (status_cmd);
+	}
+	/*if (!(execve(command[0], command, environ) == -1))*/
+		pid = fork();
+	(void) **argv;
+
+	if (pid == 0)
+	{
+		if (execve(command[0], command, environ) == -1)
+		{
+			for (i = 0; command[i] != NULL; i++)
+				free(command[i]), command[i] = NULL;
+			free(command), command = NULL;
+			perror(argv[0]);
+			exit(127);
+		}
+	}
+	else
+	{
+		waitpid(pid, &status_cmd, 0);
+		for (i = 0; command[i] != NULL; i++)
+			free(command[i]), command[i] = NULL;
+		free(command), command = NULL;
+	}
+	return (WEXITSTATUS(status_cmd));
 }
