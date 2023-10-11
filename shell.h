@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+<<<<<<< HEAD
 /*void prompt(void);*/
 char *_getenv(char *variable);
 extern char **environ;
@@ -27,4 +28,17 @@ void free_pointer(char **ptr);
 void reverse_string(char *str, int len);
 char *_itoa(int x);
 void printerror(char *name, char *cmd, int index);
+=======
+
+
+void prompt(void);
+extern char **environ;
+#define del " \t\n"
+char *_strdup(char *str);
+/*void print(char *message);*/
+char **toknizer(char *line);
+char *read_line(void);
+int command_handle(char **command, char **argv);
+
+>>>>>>> 6efc5ad3f646eb8f751ecb3db7208a301df6f54a
 #endif

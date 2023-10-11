@@ -1,4 +1,5 @@
 #include "shell.h"
+<<<<<<< HEAD:strings.c
 /**
  * _strdup- function that return copy of string
  * @str: string pointer to be duplicate
@@ -8,6 +9,29 @@ char *_strdup(const char *str)
 {
 	char *ptr;
 	int i, len = 0;
+=======
+char *_strdup(char *str)
+{
+    char *ptr = NULL;
+    int i, len = 0;
+    if (str == NULL)
+    {
+    	free(str);
+    	return (NULL);
+    }
+    while (*str != '\0')
+    {
+        len++;
+        str++;
+    }
+    str = str - len;
+    if (ptr == NULL)
+    return (NULL);
+    for (i = 0; i <= len; i++)
+    ptr[i] = str[i];
+    free(str);
+    return (ptr);
+>>>>>>> 6efc5ad3f646eb8f751ecb3db7208a301df6f54a:test_code/strings.c
 
 	if (str == NULL)
 	return (NULL);
