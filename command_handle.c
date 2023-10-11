@@ -13,7 +13,6 @@
  */
 int command_handle(char **command, char **argv, int index)
 {
-<<<<<<< HEAD
     char *full_path;
 pid_t pid;
 int status_cmd;
@@ -42,42 +41,4 @@ free_pointer(command);
 free(full_path), full_path = NULL;
 }
 return (WEXITSTATUS(status_cmd));
-=======
-	pid_t pid;
-	int status_cmd = 0, i;
-
-	if (access(command[0], X_OK) == -1)
-	{
-		for (i = 0; command[i] != NULL; i++)
-			free(command[i]), command[i] = NULL;
-		free(command), command = NULL;
-
-		perror(argv[0]);
-		status_cmd = 127;
-		return (status_cmd);
-	}
-	/*if (!(execve(command[0], command, environ) == -1))*/
-		pid = fork();
-	(void) **argv;
-
-	if (pid == 0)
-	{
-		if (execve(command[0], command, environ) == -1)
-		{
-			for (i = 0; command[i] != NULL; i++)
-				free(command[i]), command[i] = NULL;
-			free(command), command = NULL;
-			perror(argv[0]);
-			exit(127);
-		}
-	}
-	else
-	{
-		waitpid(pid, &status_cmd, 0);
-		for (i = 0; command[i] != NULL; i++)
-			free(command[i]), command[i] = NULL;
-		free(command), command = NULL;
-	}
-	return (WEXITSTATUS(status_cmd));
->>>>>>> 6efc5ad3f646eb8f751ecb3db7208a301df6f54a
 }
