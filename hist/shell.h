@@ -11,14 +11,13 @@
 #include <sys/wait.h>
 
 /*void prompt(void);*/
-#define del " \t\n"
 char *_getenv(char *variable);
 extern char **environ;
 int _strcmp(char *c1, char *c2);
 int _strlen(char *c);
 char *_strcat(char *x1, char *x2);
 char *_strcpy(char *dest, char *src);
-char *_strdup(char *str);
+char *_strdup(const char *str);
 char *_getpath(char *command) ;
 char **toknizer(char *line);
 char *read_line(void);

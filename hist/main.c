@@ -6,19 +6,19 @@
  * Return: 0 on success
 */
 
-int main(int argc, char **argv)
+int main(int ac, char **argv)
 {
 char *line = NULL;
 char **command = NULL;
-int status_cmd = 0, index = 0;
-(void) argc;
+int status_cmd = 0, /*i = 0,*/ index = 0;
+(void) ac;
 while (1)
 {
 line = read_line();
 if (line == NULL)
 {
 if (isatty(STDOUT_FILENO))
-write(STDOUT_FILENO, "\n", 1);
+write(STDOUT_FILENO, "\n", 0);
 return (status_cmd);
 }
 /*i++;*/
@@ -28,5 +28,4 @@ if (!command)
 continue;
 status_cmd = command_handle(command, argv, index);
 }
-return (0);
 }

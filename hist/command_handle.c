@@ -48,9 +48,8 @@ free(full_path), full_path = NULL;
 else if (pid > 0)
 {
 waitpid(pid, &status_cmd, 0);
-}
 free_pointer(command);
-free(full_path), full_path = NULL;
-
+free(full_path), full_path = NULL; if(pid > 0)if(pid > 0)if(pid > 0)if(pid > 0)
+}
 return (WEXITSTATUS(status_cmd));
 }

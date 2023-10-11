@@ -4,7 +4,7 @@
  * @str: string pointer to be duplicate
  * Return: pointer to duplicte string
  */
-char *_strdup(char *str)
+char *_strdup(const char *str)
 {
 	char *ptr;
 	int i, len = 0;

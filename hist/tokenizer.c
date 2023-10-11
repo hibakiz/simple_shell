@@ -15,31 +15,31 @@ char **toknizer(char *line)
 	if (!line)
 	return (NULL);
 	tmp = _strdup(line);
-	token = strtok(tmp, del);
+	token = strtok(tmp, " \t\n");
 	if (token == NULL)
 	{
-		free(tmp), tmp = NULL;
 		free(line), line = NULL;
+		free(tmp), tmp = NULL;
 		return (NULL);
 	}
 	while (token)
 	{
 		cpt++;
-		token = strtok(NULL, del);
+		token = strtok(NULL, " \t\n");
 	}
 free(tmp), tmp = NULL;
 command = malloc(sizeof(char *) * (cpt + 1));
-if (command  == NULL)
+if (!command)
 {
 	free(line);
 	return (NULL);
 }
-token = strtok(line, del);
+token = strtok(line, " \t\n");
 
 while (token)
 {
 command[i] = _strdup(token);
-token = strtok(NULL, del);
+token = strtok(NULL, " \t\n");
 i++;
 }
 free(line), line = NULL;
