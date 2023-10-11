@@ -10,26 +10,22 @@ int main(int ac, char **argv)
 {
 char *line = NULL;
 char **command = NULL;
-int status_cmd = 0;
+int status_cmd = 0, /*i = 0,*/ index = 0;
 (void) ac;
-int i;
 while (1)
 {
 line = read_line();
 if (line == NULL)
 {
 if (isatty(STDOUT_FILENO))
-write(STDOUT_FILENO, "\n", 1);
+write(STDOUT_FILENO, "\n", 0);
 return (status_cmd);
 }
+/*i++;*/
+index++;
 command = toknizer(line);
 if (!command)
-return;
-for (i = 0; command[i]; i++)
-{
-free(command[i]), command[i] = NULL;
-}
-free(command), command = NULL;
-status_cmd = command_handle(command, argv);
+continue;
+status_cmd = command_handle(command, argv, index);
 }
 }

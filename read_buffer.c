@@ -3,23 +3,23 @@
  * read_line - function that read userinput
  * Return: void return
  */
- char *read_line(void)
- {
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t n;
+char *read_line(void)
+{
+	 char *line = NULL;
+	 size_t len = 0;
+	 ssize_t n;
 
-    if (isatty(STDOUT_FILENO))
-    write(STDOUT_FILENO,"$ ",2);
-    n = getline(&line, &len, stdin);
+if (isatty(STDOUT_FILENO))
+write(STDOUT_FILENO,"$ ", 2);
+	 n = getline(&line, &len, stdin);
 
-    /*handle ctrl+d*/
-    if (n == -1)
-    {
+	 /*handle ctrl+d*/
+if (n == -1)
+{
 free(line);
-	    return (NULL);
-    }
+return (NULL);
+}
 
-    return (line);
+return (line);
 
- }
+}
