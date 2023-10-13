@@ -8,7 +8,7 @@
 char *_getenv(char *variable)
  {
   int i; 
-  char *env, *name, *value, *copy;
+  char  *env, *name, *value, *copy;
 
    /* if (variable == NULL) {
         return NULL; 
@@ -25,11 +25,14 @@ char *_getenv(char *variable)
         if (_strcmp(name, variable) == 0) 
         {
             value = strtok(NULL, "\n");
-            env = _strdup(value);
+           env = _strdup(value);
             free(copy);
             return (env);
         }
         free(copy), copy = NULL;
     }
+    free(copy);
+    free(name);
+    free(variable);
     return (NULL); 
 }

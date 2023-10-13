@@ -9,7 +9,7 @@ char *_getpath(char *command)
     char *path, *path_copy, *toke, *full_path;
 int i;
     struct stat s;
-path = _getenv("PATH");
+path = getenv("PATH");
 if (path == NULL || _strlen(path) == 0)
 return (NULL);
 for (i = 0; command[i]; i++)
@@ -21,10 +21,6 @@ for (i = 0; command[i]; i++)
         return(NULL);
     }
 }
-if(!path)
-return(NULL);
-else
-  if (path){
     path_copy = strdup(path);
         toke = strtok(path_copy, ":");
         while(toke != NULL){
@@ -33,8 +29,7 @@ else
             strcat(full_path, "/");
             strcat(full_path, command);
             strcat(full_path, "\0");
-            if (stat(full_path, &s) == 0){
-                free(path);
+            if (stat(full_path, &s) == 0){  
                 return (full_path);
             }
             else{
@@ -42,13 +37,14 @@ else
                 toke = strtok(NULL, ":");
             }
         }
-  free(path);
+  
+              
+             
         if (stat(command, &s) == 0)
         {
             return (command);
         }
         return (NULL);
-    }
     return (NULL);
 }
 
