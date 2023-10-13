@@ -48,16 +48,4 @@ for (i = 0; command[i]; i++)
     return (NULL);
 }
 
-/*int main (int argc, char **av)
-{
-    char * full_path;
-    full_path = _getpath(av[1]);
-    if (full_path)
-    printf("%s\n", full_path);
-    else 
-    printf("dose not exit\n");  
-}
-*/
-/*
-gcc  path.c strings.c getenv.c  -o a
-*/
+

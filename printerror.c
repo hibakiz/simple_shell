@@ -8,7 +8,7 @@
 */
 void printerror(char *name, char *cmd, int index)
 {
-    char *i, msg[] = ": No such file or directory \n";
+    char *i, msg[] = ": not found\n";
     i = _itoa(index);
     write(STDERR_FILENO, name, _strlen(name));
     write(STDERR_FILENO, ": ", 2);

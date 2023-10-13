@@ -12,6 +12,7 @@
 
 /*void prompt(void);*/
 #define del " \t\n"
+char *remove_spaces(char *str);
 char *_getenv(char *variable);
 extern char **environ;
 int _strcmp(char *c1, char *c2);

@@ -9,8 +9,8 @@ char *read_line(void)
 	 size_t len = 0;
 	 ssize_t n;
 
-if (isatty(STDOUT_FILENO))
-write(STDOUT_FILENO,"$ ", 2);
+if (isatty(STDIN_FILENO))
+	write(STDOUT_FILENO,"$ ", 2);
 	 n = getline(&line, &len, stdin);
 
 	 /*handle ctrl+d*/

@@ -17,10 +17,11 @@ while (1)
 line = read_line();
 if (line == NULL)
 {
-if (isatty(STDOUT_FILENO))
+if (isatty(STDIN_FILENO))
 write(STDOUT_FILENO, "\n", 1);
 return (status_cmd);
 }
+
 /*i++;*/
 index++;
 command = toknizer(line);
