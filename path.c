@@ -34,7 +34,7 @@ else
             strcat(full_path, command);
             strcat(full_path, "\0");
             if (stat(full_path, &s) == 0){
-                free(path_copy);
+                free(path);
                 return (full_path);
             }
             else{
@@ -42,7 +42,7 @@ else
                 toke = strtok(NULL, ":");
             }
         }
-  free(path_copy);
+  free(path);
         if (stat(command, &s) == 0)
         {
             return (command);
@@ -59,8 +59,7 @@ else
     if (full_path)
     printf("%s\n", full_path);
     else 
-    printf("dose not exit\n");
-   
+    printf("dose not exit\n");  
 }
 */
 /*
