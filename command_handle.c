@@ -15,9 +15,9 @@ int command_handle(char **command, char **argv, int index)
 {
     char *full_path;
 pid_t pid;
-int status_cmd = 0, i;
+int status_cmd = 0;
 
-if (access(command[0], X_OK) == -1)
+/*if (access(command[0], X_OK) == -1)
 		{
 					for (i = 0; command[i] != NULL; i++)
 									free(command[i]), command[i] = NULL;
@@ -26,7 +26,7 @@ if (access(command[0], X_OK) == -1)
 									perror(argv[0]);
 											status_cmd = 127;
 													return (status_cmd);
-														}
+														}*/
 full_path = _getpath(command[0]);
 if (!full_path)
 {
@@ -40,8 +40,9 @@ if (pid == 0)
 if (execve(full_path, command, environ) == -1)
 {
 /*perror(argv[0]);*/
-free_pointer(command);
 free(full_path), full_path = NULL;
+free_pointer(command);
+
 /*exit(127);*/
 }
 }

@@ -6,13 +6,12 @@
 */
 char *_getpath(char *command) 
 {
-    int i;
-char *path, *full_path, *toke;
-struct stat s;
+    char *path, *path_copy, *toke, *full_path;
+int i;
+    struct stat s;
 path = _getenv("PATH");
-if(!path)
-return(NULL);
-toke = strtok(path, ":");
+if (path == NULL || _strlen(path) == 0)
+return (NULL);
 for (i = 0; command[i]; i++)
 {
     if (command[i] == '/')
@@ -22,24 +21,48 @@ for (i = 0; command[i]; i++)
         return(NULL);
     }
 }
-
-while (toke)
-{
-    full_path = malloc(_strlen(toke) + _strlen(command) + 2);
-if (full_path)
-{
-    _strcpy(full_path, toke);
-    _strcat(full_path, "/");
-    _strcat(full_path, command);
-    if(stat(full_path, &s) == 0)
-    {
-        free(path);
-        return(full_path);
-    }
-    free(full_path), full_path = NULL;
-    toke = strtok(NULL, ":");
-}
-}
-free(path);
+if(!path)
 return(NULL);
+else
+  if (path){
+    path_copy = strdup(path);
+        toke = strtok(path_copy, ":");
+        while(toke != NULL){
+              full_path = malloc(strlen(toke)+ strlen(command) + 2); 
+            strcpy(full_path, toke);
+            strcat(full_path, "/");
+            strcat(full_path, command);
+            strcat(full_path, "\0");
+            if (stat(full_path, &s) == 0){
+                free(path_copy);
+                return (full_path);
+            }
+            else{
+                free(full_path), full_path = NULL;
+                toke = strtok(NULL, ":");
+            }
+        }
+  free(path_copy);
+        if (stat(command, &s) == 0)
+        {
+            return (command);
+        }
+        return (NULL);
+    }
+    return (NULL);
 }
+
+/*int main (int argc, char **av)
+{
+    char * full_path;
+    full_path = _getpath(av[1]);
+    if (full_path)
+    printf("%s\n", full_path);
+    else 
+    printf("dose not exit\n");
+   
+}
+*/
+/*
+gcc  path.c strings.c getenv.c  -o a
+*/
