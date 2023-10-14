@@ -1,51 +1,56 @@
 #include "shell.h"
-/**
- * getpath - function that return full path
- * @command: input command
- * Return: full path of input command
-*/
-char *_getpath(char *command) 
+
+char *_getpath(char *user_command)
 {
-    char *path, *path_copy, *toke, *full_path;
-int i;
-    struct stat s;
-path = getenv("PATH");
-if (path == NULL || _strlen(path) == 0)
-return (NULL);
-for (i = 0; command[i]; i++)
-{
-    if (command[i] == '/')
-    {
-        if (stat(command, &s) == 0)
-        return(_strdup(command));
-        return(NULL);
-    }
-}
-    path_copy = strdup(path);
-        toke = strtok(path_copy, ":");
-        while(toke != NULL){
-              full_path = malloc(strlen(toke)+ strlen(command) + 2); 
-            strcpy(full_path, toke);
-            strcat(full_path, "/");
-            strcat(full_path, command);
-            strcat(full_path, "\0");
-            if (stat(full_path, &s) == 0){  
-                return (full_path);
-            }
-            else{
-                free(full_path), full_path = NULL;
-                toke = strtok(NULL, ":");
-            }
-        }
-  
-              
-             
-        if (stat(command, &s) == 0)
-        {
-            return (command);
-        }
-        return (NULL);
-    return (NULL);
+	char *current_path = getenv("PATH");
+	char *token, *dupl;
+	char buff[256];
+	char *path = NULL;
+
+	if (strchr(user_command, '/') != NULL)
+	{
+		path = strdup(user_command);
+		return (path);
+	}
+	if (current_path == NULL)
+		return (NULL);
+	
+	dupl = strdup(current_path);
+	token = strtok(dupl, ":");
+
+	while(token)
+	{
+		strcpy(buff,token);
+		strcat(buff, "/");
+		strcat(buff, user_command);
+		if (access(buff, X_OK) == 0)
+		{
+			path = strdup(buff);
+			free(dupl);
+			return (path);
+		}
+		
+		token = strtok(NULL, ":");
+	}
+	free(token);
+	free(dupl);
+	return (NULL);
 }
 
 
+
+/*int main()
+{
+	char *command = "ls";
+	char *fullpath = get_path(command);
+	free(fullpath);
+	
+	return(0);
+}
+int main()
+{
+	char *current_path = getenv("PATH");
+	printf("%s\n", current_path);
+
+	return (0);
+}*/
