@@ -27,7 +27,11 @@ index++;
 command = toknizer(line);
 if (!command)
 continue;
+if (strcmp(command[0], "exit") == 0 || strcmp(command[0], "env") == 0)
+			exenv(command, &status_cmd, command[0]);
+else
 status_cmd = command_handle(command, argv, index);
+
 }
 return (0);
 }

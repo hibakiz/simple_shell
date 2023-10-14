@@ -16,6 +16,7 @@ char *remove_spaces(char *str);
 char *_getenv(char *variable);
 extern char **environ;
 int _strcmp(char *c1, char *c2);
+
 int _strlen(char *c);
 char *_strcat(char *x1, char *x2);
 char *_strcpy(char *dest, char *src);
@@ -29,4 +30,5 @@ void free_pointer(char **ptr);
 void reverse_string(char *str, int len);
 char *_itoa(int x);
 void printerror(char *name, char *cmd, int index);
+void exenv(char **args, int *status, char *command);
 #endif

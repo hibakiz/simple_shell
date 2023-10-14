@@ -17,6 +17,7 @@ int command_handle(char **command, char **argv, int index)
 pid_t pid;
 int status_cmd = 0;
 
+
 /*if (access(command[0], X_OK) == -1)
 		{
 					for (i = 0; command[i] != NULL; i++)
@@ -37,6 +38,7 @@ if (!full_path)
 pid = fork();
 if (pid == 0)
 {
+
 if (execve(full_path, command, environ) == -1)
 {
 /*perror(argv[0]);*/
