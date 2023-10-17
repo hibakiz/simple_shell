@@ -1,5 +1,9 @@
 #include "shell.h"
-
+/**
+ * _getpath - function to get the full path for a command
+ * @user_command: the command got from the user
+ * Return: the full path
+*/
 char *_getpath(char *user_command)
 {
 	char *current_path = getenv("PATH");
@@ -14,13 +18,13 @@ char *_getpath(char *user_command)
 	}
 	if (current_path == NULL)
 		return (NULL);
-	
+
 	dupl = strdup(current_path);
 	token = strtok(dupl, ":");
 
-	while(token)
+	while (token)
 	{
-		strcpy(buff,token);
+		strcpy(buff, token);
 		strcat(buff, "/");
 		strcat(buff, user_command);
 		if (access(buff, X_OK) == 0)
@@ -29,28 +33,10 @@ char *_getpath(char *user_command)
 			free(dupl);
 			return (path);
 		}
-		
+
 		token = strtok(NULL, ":");
 	}
 	free(token);
 	free(dupl);
 	return (NULL);
 }
-
-
-
-/*int main()
-{
-	char *command = "ls";
-	char *fullpath = get_path(command);
-	free(fullpath);
-	
-	return(0);
-}
-int main()
-{
-	char *current_path = getenv("PATH");
-	printf("%s\n", current_path);
-
-	return (0);
-}*/

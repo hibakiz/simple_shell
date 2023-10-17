@@ -8,16 +8,14 @@
 */
 void printerror(char *name, char *cmd, int index)
 {
-    char *i, msg[] = ": not found\n";
-    i = _itoa(index);
-    write(STDERR_FILENO, name, _strlen(name));
-    write(STDERR_FILENO, ": ", 2);
-    write(STDERR_FILENO, i, _strlen(i));
-    write(STDERR_FILENO, ": ", 2);
-    write(STDERR_FILENO, cmd, _strlen(cmd));
-    write(STDERR_FILENO, msg, _strlen(msg));
-    free(i);
+	char *i, msg[] = ": not found\n";
 
-
-
+	i = _itoa(index);
+	write(STDERR_FILENO, name, _strlen(name));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, i, _strlen(i));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, cmd, _strlen(cmd));
+	write(STDERR_FILENO, msg, _strlen(msg));
+	free(i);
 }

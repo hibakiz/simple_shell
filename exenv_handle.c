@@ -1,7 +1,12 @@
 #include "shell.h"
 
-
-
+/**
+ * exenv - function to handle the exit and env commands
+ * @args: the command
+ * @status_cmd: the status to be returned
+ * @command: the full command
+ * Return: no return
+ */
 void exenv(char **args, int *status_cmd, char *command)
 {
 	int i;

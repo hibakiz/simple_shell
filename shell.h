@@ -17,11 +17,12 @@ char *_getenv(char *variable);
 extern char **environ;
 int _strcmp(char *c1, char *c2);
 
+void comment(char *str);
 int _strlen(char *c);
 char *_strcat(char *x1, char *x2);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
-char *_getpath(char *command) ;
+char *_getpath(char *command);
 char **toknizer(char *line);
 char *read_line(void);
 /*void command_handle (char **command);*/
